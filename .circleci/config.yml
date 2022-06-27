@@ -100,7 +100,7 @@ jobs:
 workflows:
   default:
     jobs:
-      - bulid-frontend
+      - build-frontend
       - build-backend
       - test-frontend:
           requires: 
