@@ -1,14 +1,46 @@
 version: 2.1
 
-orbs: 
-  slack: circleci/slack@4.10.1
-
+  
 executors:
   node:
     docker:
       - image: circleci/node:13.8.0
+  python:
+    docker:
+      - image: python:3.9.0-alpine
+  aws:
+    docker:
+      - image: amazon/aws-cli
+
 
 jobs:
+  install-backend-dependencies:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: npm install
+          working_directory: ./backend
+          command: ls -la && npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - backend/node_modules
+
+
+  install-frontend-dependencies:
+   executor: node
+   steps:
+      - checkout
+      - run:
+          name: npm install
+          working_directory: ./frontend
+          command: ls -la && npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - frontend/node_modules
+
   build-backend:
     executor: node
     steps:
@@ -103,8 +135,16 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
+      ## INSTALL AND BUILD DEPENDENCIES 
+      - install-backend-dependencies
+      - install-frontend-dependencies
+
+      - build-backend:
+          requires:
+            - install-backend-dependencies
+      - build-frontend:
+          requires:
+            - install-frontend-dependencies
       - test-frontend:
           requires: 
             - build-frontend
