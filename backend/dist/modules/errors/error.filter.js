@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ErrorFilter = void 0;
 const common_1 = require("@nestjs/common");
 let ErrorFilter = class ErrorFilter {
     catch(error, host) {
@@ -22,7 +21,7 @@ let ErrorFilter = class ErrorFilter {
     }
 };
 ErrorFilter = __decorate([
-    (0, common_1.Catch)()
+    common_1.Catch()
 ], ErrorFilter);
 exports.ErrorFilter = ErrorFilter;
 //# sourceMappingURL=error.filter.js.map

@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckEmployeeEffectiveDateExists = void 0;
 const employees_repository_1 = require("../../../repositories/employees.repository");
 const common_1 = require("@nestjs/common");
 let CheckEmployeeEffectiveDateExists = class CheckEmployeeEffectiveDateExists {
@@ -51,7 +50,7 @@ let CheckEmployeeEffectiveDateExists = class CheckEmployeeEffectiveDateExists {
     }
 };
 CheckEmployeeEffectiveDateExists = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], CheckEmployeeEffectiveDateExists);
 exports.CheckEmployeeEffectiveDateExists = CheckEmployeeEffectiveDateExists;

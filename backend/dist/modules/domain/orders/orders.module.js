@@ -8,9 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersModule = void 0;
 const common_1 = require("@nestjs/common");
 const handlers_1 = require("./commands/handlers");
 const common_2 = require("../../common");
@@ -38,7 +36,7 @@ let OrdersModule = class OrdersModule {
     }
 };
 OrdersModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         imports: [
             common_2.CommonModule,
             typeorm_1.TypeOrmModule.forFeature([product_entity_1.Product, order_entity_1.Order]),
@@ -55,7 +53,8 @@ OrdersModule = __decorate([
             app_logger_1.AppLogger,
         ],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof core_1.ModuleRef !== "undefined" && core_1.ModuleRef) === "function" ? _a : Object, commands_1.SyncCommandDispatcher])
+    __metadata("design:paramtypes", [core_1.ModuleRef,
+        commands_1.SyncCommandDispatcher])
 ], OrdersModule);
 exports.OrdersModule = OrdersModule;
 //# sourceMappingURL=orders.module.js.map

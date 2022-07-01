@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeDeactivator = void 0;
 const deactivate_employee_command_1 = require("../deactivate-employee.command");
 const commands_1 = require("../../../../common/commands");
 const cqrs_1 = require("@nestjs/cqrs");
@@ -39,8 +38,8 @@ let EmployeeDeactivator = class EmployeeDeactivator extends commands_1.BaseComma
     }
 };
 EmployeeDeactivator = __decorate([
-    (0, cqrs_1.CommandHandler)(deactivate_employee_command_1.DeactivateEmployee),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(deactivate_employee_command_1.DeactivateEmployee),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeDeactivator);
 exports.EmployeeDeactivator = EmployeeDeactivator;

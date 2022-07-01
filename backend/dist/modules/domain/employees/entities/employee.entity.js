@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDateFromString = exports.SalaryType = exports.Gender = exports.Employee = void 0;
 const moment = require("moment-timezone");
 const entities_1 = require("../../../common/entities");
 const typeorm_1 = require("typeorm");
@@ -42,103 +41,103 @@ let Employee = class Employee extends entities_1.AggregateRoot {
     }
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], Employee.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    typeorm_1.Column({ length: 100 }),
     __metadata("design:type", String)
 ], Employee.prototype, "firstName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "middleName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    typeorm_1.Column({ length: 100 }),
     __metadata("design:type", String)
 ], Employee.prototype, "lastName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "secondLastName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "displayName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50, default: '' }),
+    typeorm_1.Column({ length: 50, default: '' }),
     __metadata("design:type", String)
 ], Employee.prototype, "companyEmail", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50, nullable: true, default: '' }),
+    typeorm_1.Column({ length: 50, nullable: true, default: '' }),
     __metadata("design:type", String)
 ], Employee.prototype, "personalEmail", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    typeorm_1.Column({ nullable: true }),
     __metadata("design:type", Date)
 ], Employee.prototype, "birthdate", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Employee.prototype, "startDate", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 200, nullable: true }),
+    typeorm_1.Column({ length: 200, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "address", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "phoneNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "bankName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100, nullable: true }),
+    typeorm_1.Column({ length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "accountNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    typeorm_1.Column({ nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "gender", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'json', default: '{}' }),
+    typeorm_1.Column({ type: 'json', default: '{}' }),
     __metadata("design:type", String)
 ], Employee.prototype, "tags", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    typeorm_1.Column({ length: 100 }),
     __metadata("design:type", String)
 ], Employee.prototype, "country", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    typeorm_1.Column({ length: 100 }),
     __metadata("design:type", String)
 ], Employee.prototype, "region", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    typeorm_1.Column({ length: 100 }),
     __metadata("design:type", String)
 ], Employee.prototype, "city", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Employee.prototype, "effectiveDate", void 0);
 __decorate([
-    (0, typeorm_1.Column)('decimal'),
+    typeorm_1.Column('decimal'),
     __metadata("design:type", Number)
 ], Employee.prototype, "salary", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    typeorm_1.Column(),
     __metadata("design:type", String)
 ], Employee.prototype, "salaryType", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: true }),
+    typeorm_1.Column({ default: true }),
     __metadata("design:type", Boolean)
 ], Employee.prototype, "isActive", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: 40 }),
+    typeorm_1.Column({ default: 40 }),
     __metadata("design:type", Number)
 ], Employee.prototype, "workingHoursPerWeek", void 0);
 Employee = __decorate([
-    (0, typeorm_1.Entity)(),
+    typeorm_1.Entity(),
     __metadata("design:paramtypes", [Object])
 ], Employee);
 exports.Employee = Employee;

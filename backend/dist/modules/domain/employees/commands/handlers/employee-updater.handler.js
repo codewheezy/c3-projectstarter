@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeUpdater = void 0;
 const moment = require("moment-timezone");
 const commands_1 = require("../../../../common/commands");
 const update_employee_command_1 = require("../update-employee.command");
@@ -62,8 +61,8 @@ let EmployeeUpdater = class EmployeeUpdater extends commands_1.BaseCommandHandle
     }
 };
 EmployeeUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_command_1.UpdateEmployee),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_command_1.UpdateEmployee),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeUpdater);
 exports.EmployeeUpdater = EmployeeUpdater;

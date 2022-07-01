@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckEmployeePhoneNumberExists = void 0;
 const employees_repository_1 = require("../../../repositories/employees.repository");
 const common_1 = require("@nestjs/common");
 let CheckEmployeePhoneNumberExists = class CheckEmployeePhoneNumberExists {
@@ -51,7 +50,7 @@ let CheckEmployeePhoneNumberExists = class CheckEmployeePhoneNumberExists {
     }
 };
 CheckEmployeePhoneNumberExists = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], CheckEmployeePhoneNumberExists);
 exports.CheckEmployeePhoneNumberExists = CheckEmployeePhoneNumberExists;

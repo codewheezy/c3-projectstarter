@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckUpdateCompanyEmailPropertiesValue = void 0;
 const validation_1 = require("../../../../../common/commands/validation");
 const joi = require("@hapi/joi");
 class CheckUpdateCompanyEmailPropertiesValue extends validation_1.JoiCommandValidator {

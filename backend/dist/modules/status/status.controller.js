@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StatusController = void 0;
 const common_1 = require("@nestjs/common");
 const config_service_1 = require("../config/config.service");
 let StatusController = class StatusController {
@@ -27,13 +26,13 @@ let StatusController = class StatusController {
     }
 };
 __decorate([
-    (0, common_1.Get)(),
+    common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], StatusController.prototype, "status", null);
 StatusController = __decorate([
-    (0, common_1.Controller)('status'),
+    common_1.Controller('status'),
     __metadata("design:paramtypes", [config_service_1.ConfigService])
 ], StatusController);
 exports.StatusController = StatusController;

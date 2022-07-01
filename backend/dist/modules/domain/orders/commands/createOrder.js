@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOrder = void 0;
 class CreateOrder {
     constructor(productId, productQuantity, userId) {
         this.productId = productId;

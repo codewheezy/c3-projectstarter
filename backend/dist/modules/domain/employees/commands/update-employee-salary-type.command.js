@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateEmployeeSalaryType = void 0;
 class UpdateEmployeeSalaryType {
     constructor(employeeId, salaryType) {
         this.employeeId = employeeId;

@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeSalaryTypeUpdater = void 0;
 const commands_1 = require("../../../../common/commands");
 const update_employee_salary_type_command_1 = require("../update-employee-salary-type.command");
 const cqrs_1 = require("@nestjs/cqrs");
@@ -41,8 +40,8 @@ let EmployeeSalaryTypeUpdater = class EmployeeSalaryTypeUpdater extends commands
     }
 };
 EmployeeSalaryTypeUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_salary_type_command_1.UpdateEmployeeSalaryType),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_salary_type_command_1.UpdateEmployeeSalaryType),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeSalaryTypeUpdater);
 exports.EmployeeSalaryTypeUpdater = EmployeeSalaryTypeUpdater;

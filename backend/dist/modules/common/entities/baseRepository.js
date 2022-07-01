@@ -20,9 +20,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseRepository = exports.PaginateResult = void 0;
 const typeorm_1 = require("typeorm");
 const events_1 = require("../events");
 const typeorm_2 = require("@nestjs/typeorm");
@@ -125,8 +123,9 @@ let BaseRepository = class BaseRepository {
     }
 };
 BaseRepository = __decorate([
-    __param(0, (0, typeorm_2.InjectEntityManager)()),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_1.Repository !== "undefined" && typeorm_1.Repository) === "function" ? _a : Object, events_1.SyncEventDispatcher])
+    __param(0, typeorm_2.InjectEntityManager()),
+    __metadata("design:paramtypes", [typeorm_1.Repository,
+        events_1.SyncEventDispatcher])
 ], BaseRepository);
 exports.BaseRepository = BaseRepository;
 //# sourceMappingURL=baseRepository.js.map

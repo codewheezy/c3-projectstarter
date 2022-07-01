@@ -21,7 +21,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeController = void 0;
 const common_1 = require("@nestjs/common");
 const commands_1 = require("../../common/commands");
 const create_employee_command_1 = require("./commands/create-employee.command");
@@ -153,138 +152,138 @@ let EmployeeController = class EmployeeController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "createEmployee", null);
 __decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, user_decorator_1.Usr)()),
-    __param(1, (0, common_1.Query)()),
+    common_1.Get(),
+    __param(0, user_decorator_1.Usr()),
+    __param(1, common_1.Query()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "getEmployees", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "getById", null);
 __decorate([
-    (0, common_1.Put)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Put(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "updateEmployee", null);
 __decorate([
-    (0, common_1.Put)(':id/names'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/names'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeNames", null);
 __decorate([
-    (0, common_1.Put)(':id/address'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/address'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeAddress", null);
 __decorate([
-    (0, common_1.Put)(':id/displayName'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/displayName'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeDisplayName", null);
 __decorate([
-    (0, common_1.Put)(':id/tags'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/tags'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeTags", null);
 __decorate([
-    (0, common_1.Put)(':id/phoneNumber'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/phoneNumber'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changePhoneNumber", null);
 __decorate([
-    (0, common_1.Put)(':id/personalEmail'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/personalEmail'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changePersonalEmail", null);
 __decorate([
-    (0, common_1.Put)(':id/companyEmail'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/companyEmail'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeCompanyEmail", null);
 __decorate([
-    (0, common_1.Put)(':id/salary'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/salary'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeSalary", null);
 __decorate([
-    (0, common_1.Put)(':id/salaryType'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/salaryType'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeSalaryType", null);
 __decorate([
-    (0, common_1.Put)(':id/effectiveDate'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/effectiveDate'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeEffectiveDate", null);
 __decorate([
-    (0, common_1.Put)(':id/birthdate'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Put(':id/birthdate'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "changeBirthDate", null);
 __decorate([
-    (0, common_1.Put)(':id/inactive'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Put(':id/inactive'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "deactivateEmployee", null);
 __decorate([
-    (0, common_1.Put)(':id/active'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Put(':id/active'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], EmployeeController.prototype, "activateEmployee", null);
 EmployeeController = __decorate([
-    (0, common_1.Controller)('/Employees'),
+    common_1.Controller('/Employees'),
     __metadata("design:paramtypes", [commands_1.SyncCommandDispatcher,
         employees_repository_1.EmployeeRepository])
 ], EmployeeController);

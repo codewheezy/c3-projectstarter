@@ -17,9 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SyncCommandDispatcher = void 0;
 const common_1 = require("@nestjs/common");
 const cqrs_1 = require("@nestjs/cqrs");
 const constants_1 = require("./constants");
@@ -73,8 +71,8 @@ let SyncCommandDispatcher = class SyncCommandDispatcher {
     }
 };
 SyncCommandDispatcher = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [typeof (_a = typeof cqrs_1.CommandBus !== "undefined" && cqrs_1.CommandBus) === "function" ? _a : Object])
+    common_1.Injectable(),
+    __metadata("design:paramtypes", [cqrs_1.CommandBus])
 ], SyncCommandDispatcher);
 exports.SyncCommandDispatcher = SyncCommandDispatcher;
 //# sourceMappingURL=syncCommandDispatcher.js.map

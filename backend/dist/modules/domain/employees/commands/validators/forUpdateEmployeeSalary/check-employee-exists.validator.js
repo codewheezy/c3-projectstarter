@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckEmployeeSalaryExists = void 0;
 const employees_repository_1 = require("../../../repositories/employees.repository");
 const common_1 = require("@nestjs/common");
 let CheckEmployeeSalaryExists = class CheckEmployeeSalaryExists {
@@ -51,7 +50,7 @@ let CheckEmployeeSalaryExists = class CheckEmployeeSalaryExists {
     }
 };
 CheckEmployeeSalaryExists = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], CheckEmployeeSalaryExists);
 exports.CheckEmployeeSalaryExists = CheckEmployeeSalaryExists;

@@ -20,9 +20,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeRepository = void 0;
 const entities_1 = require("../../../common/entities");
 const events_1 = require("../../../common/events");
 const typeorm_1 = require("typeorm");
@@ -44,9 +42,10 @@ let EmployeeRepository = class EmployeeRepository extends entities_1.BaseReposit
     }
 };
 EmployeeRepository = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectEntityManager)()),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_1.EntityManager !== "undefined" && typeorm_1.EntityManager) === "function" ? _a : Object, events_1.SyncEventDispatcher])
+    common_1.Injectable(),
+    __param(0, typeorm_2.InjectEntityManager()),
+    __metadata("design:paramtypes", [typeorm_1.EntityManager,
+        events_1.SyncEventDispatcher])
 ], EmployeeRepository);
 exports.EmployeeRepository = EmployeeRepository;
 //# sourceMappingURL=employees.repository.js.map

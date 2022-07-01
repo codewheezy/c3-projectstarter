@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeEffectiveDateUpdater = void 0;
 const moment = require("moment-timezone");
 const commands_1 = require("../../../../common/commands");
 const update_employee_effective_date_command_1 = require("../update-employee-effective-date.command");
@@ -42,8 +41,8 @@ let EmployeeEffectiveDateUpdater = class EmployeeEffectiveDateUpdater extends co
     }
 };
 EmployeeEffectiveDateUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_effective_date_command_1.UpdateEmployeeEffectiveDate),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_effective_date_command_1.UpdateEmployeeEffectiveDate),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeEffectiveDateUpdater);
 exports.EmployeeEffectiveDateUpdater = EmployeeEffectiveDateUpdater;

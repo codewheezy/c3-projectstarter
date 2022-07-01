@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddOrders1549375960026 = void 0;
 class AddOrders1549375960026 {
     up(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {

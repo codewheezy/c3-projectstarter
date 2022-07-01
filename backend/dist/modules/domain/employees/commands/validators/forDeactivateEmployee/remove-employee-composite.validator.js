@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeactivateEmployeeCompositeValidator = void 0;
 const validation_1 = require("../../../../../common/commands/validation");
 const CompositeValidator_1 = require("../../../../../common/commands/validation/CompositeValidator");
 const deactivate_employee_command_1 = require("../../deactivate-employee.command");
@@ -20,7 +19,7 @@ let DeactivateEmployeeCompositeValidator = class DeactivateEmployeeCompositeVali
     }
 };
 DeactivateEmployeeCompositeValidator = __decorate([
-    (0, validation_1.CommandValidator)(deactivate_employee_command_1.DeactivateEmployee),
+    validation_1.CommandValidator(deactivate_employee_command_1.DeactivateEmployee),
     __metadata("design:paramtypes", [check_employee_exists_validator_1.CheckEmployeeExistsOnDeactivate])
 ], DeactivateEmployeeCompositeValidator);
 exports.DeactivateEmployeeCompositeValidator = DeactivateEmployeeCompositeValidator;

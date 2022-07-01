@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JwtStrategy = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const glee_jwks_rsa_1 = require("glee-jwks-rsa");
-let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
+let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
     constructor() {
         const issuer = `https://${process.env.AUTH0_DOMAIN}/`;
         const jwksUri = `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`;
         const audience = process.env.AUTH0_AUDIENCE;
         super({
-            secretOrKeyProvider: (0, glee_jwks_rsa_1.passportJwtSecret)({
+            secretOrKeyProvider: glee_jwks_rsa_1.passportJwtSecret({
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
@@ -43,7 +42,7 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
     }
 };
 JwtStrategy = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [])
 ], JwtStrategy);
 exports.JwtStrategy = JwtStrategy;

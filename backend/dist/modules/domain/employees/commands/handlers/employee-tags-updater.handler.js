@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeTagsUpdater = void 0;
 const commands_1 = require("../../../../common/commands");
 const update_employee_tags_command_1 = require("../update-employee-tags.command");
 const cqrs_1 = require("@nestjs/cqrs");
@@ -39,8 +38,8 @@ let EmployeeTagsUpdater = class EmployeeTagsUpdater extends commands_1.BaseComma
     }
 };
 EmployeeTagsUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_tags_command_1.UpdateEmployeeTags),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_tags_command_1.UpdateEmployeeTags),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeTagsUpdater);
 exports.EmployeeTagsUpdater = EmployeeTagsUpdater;

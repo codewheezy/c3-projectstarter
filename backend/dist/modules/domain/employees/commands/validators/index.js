@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CommandValidators = void 0;
 const create_employee_composite_validator_1 = require("./forCreateEmployee/create-employee-composite.validator");
 const check_properties_value_validator_1 = require("./forCreateEmployee/check-properties-value.validator");
 const check_properties_value_validator_2 = require("./forUpdateEmployeeName/check-properties-value.validator");

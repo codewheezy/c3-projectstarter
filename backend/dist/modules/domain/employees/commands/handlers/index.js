@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CommandHandlers = void 0;
 const employee_creator_handler_1 = require("./employee-creator.handler");
 const employee_updater_handler_1 = require("./employee-updater.handler");
 const employee_name_updater_handler_1 = require("./employee-name-updater.handler");

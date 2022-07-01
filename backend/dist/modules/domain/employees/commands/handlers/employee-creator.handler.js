@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeCreator = void 0;
 const commands_1 = require("../../../../common/commands");
 const create_employee_command_1 = require("../create-employee.command");
 const employees_repository_1 = require("../../repositories/employees.repository");
@@ -38,8 +37,8 @@ let EmployeeCreator = class EmployeeCreator extends commands_1.BaseCommandHandle
     }
 };
 EmployeeCreator = __decorate([
-    (0, cqrs_1.CommandHandler)(create_employee_command_1.CreateEmployee),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(create_employee_command_1.CreateEmployee),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeCreator);
 exports.EmployeeCreator = EmployeeCreator;

@@ -11,9 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderRepository = void 0;
 const entities_1 = require("../../../common/entities");
 const order_entity_1 = require("../entities/order.entity");
 const typeorm_1 = require("typeorm");
@@ -26,9 +24,10 @@ let OrderRepository = class OrderRepository extends entities_1.BaseRepository {
     }
 };
 OrderRepository = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectEntityManager)()),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_1.EntityManager !== "undefined" && typeorm_1.EntityManager) === "function" ? _a : Object, events_1.SyncEventDispatcher])
+    common_1.Injectable(),
+    __param(0, typeorm_2.InjectEntityManager()),
+    __metadata("design:paramtypes", [typeorm_1.EntityManager,
+        events_1.SyncEventDispatcher])
 ], OrderRepository);
 exports.OrderRepository = OrderRepository;
 //# sourceMappingURL=orderRepository.js.map

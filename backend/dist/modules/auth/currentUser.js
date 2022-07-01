@@ -11,12 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CurrentUser = void 0;
 const core_1 = require("@nestjs/core");
 const common_1 = require("@nestjs/common");
-const express_1 = require("express");
 let CurrentUser = class CurrentUser {
     constructor(request) {
         this.request = request;
@@ -26,9 +23,9 @@ let CurrentUser = class CurrentUser {
     }
 };
 CurrentUser = __decorate([
-    (0, common_1.Injectable)({ scope: common_1.Scope.REQUEST }),
-    __param(0, (0, common_1.Inject)(core_1.REQUEST)),
-    __metadata("design:paramtypes", [typeof (_a = typeof express_1.Request !== "undefined" && express_1.Request) === "function" ? _a : Object])
+    common_1.Injectable({ scope: common_1.Scope.REQUEST }),
+    __param(0, common_1.Inject(core_1.REQUEST)),
+    __metadata("design:paramtypes", [Object])
 ], CurrentUser);
 exports.CurrentUser = CurrentUser;
 //# sourceMappingURL=currentUser.js.map

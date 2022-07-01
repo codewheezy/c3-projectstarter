@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CommonModule = void 0;
 const common_1 = require("@nestjs/common");
 const commands_1 = require("./commands");
 const events_1 = require("./events");
@@ -20,7 +19,7 @@ let CommonModule = class CommonModule {
     onModuleInit() { }
 };
 CommonModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         imports: [cqrs_1.CqrsModule],
         providers: [commands_1.SyncCommandDispatcher, events_1.SyncEventDispatcher, validationExplorer_1.ValidationExplorer],
         exports: [commands_1.SyncCommandDispatcher, events_1.SyncEventDispatcher],

@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeBirthDateUpdater = void 0;
 const moment = require("moment-timezone");
 const commands_1 = require("../../../../common/commands");
 const update_employee_birthdate_command_1 = require("../update-employee-birthdate.command");
@@ -42,8 +41,8 @@ let EmployeeBirthDateUpdater = class EmployeeBirthDateUpdater extends commands_1
     }
 };
 EmployeeBirthDateUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_birthdate_command_1.UpdateEmployeeBirthdate),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_birthdate_command_1.UpdateEmployeeBirthdate),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeBirthDateUpdater);
 exports.EmployeeBirthDateUpdater = EmployeeBirthDateUpdater;

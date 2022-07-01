@@ -8,9 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidationExplorer = void 0;
 const common_1 = require("@nestjs/common");
 const modules_container_1 = require("@nestjs/core/injector/modules-container");
 const constants_1 = require("../constants");
@@ -45,8 +43,8 @@ let ValidationExplorer = class ValidationExplorer {
     }
 };
 ValidationExplorer = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [typeof (_a = typeof modules_container_1.ModulesContainer !== "undefined" && modules_container_1.ModulesContainer) === "function" ? _a : Object])
+    common_1.Injectable(),
+    __metadata("design:paramtypes", [modules_container_1.ModulesContainer])
 ], ValidationExplorer);
 exports.ValidationExplorer = ValidationExplorer;
 //# sourceMappingURL=validationExplorer.js.map

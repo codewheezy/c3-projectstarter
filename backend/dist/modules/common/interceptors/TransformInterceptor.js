@@ -6,17 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransformInterceptor = void 0;
 const common_1 = require("@nestjs/common");
 const operators_1 = require("rxjs/operators");
 const class_transformer_1 = require("class-transformer");
 let TransformInterceptor = class TransformInterceptor {
     intercept(context, next) {
-        return next.handle().pipe((0, operators_1.map)(data => (0, class_transformer_1.classToPlain)(data)));
+        return next.handle().pipe(operators_1.map(data => class_transformer_1.classToPlain(data)));
     }
 };
 TransformInterceptor = __decorate([
-    (0, common_1.Injectable)()
+    common_1.Injectable()
 ], TransformInterceptor);
 exports.TransformInterceptor = TransformInterceptor;
 //# sourceMappingURL=TransformInterceptor.js.map

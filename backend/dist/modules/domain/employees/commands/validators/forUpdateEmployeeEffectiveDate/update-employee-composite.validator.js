@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateEmployeeEffectiveDateCompositeValidator = void 0;
 const validation_1 = require("../../../../../common/commands/validation");
 const CompositeValidator_1 = require("../../../../../common/commands/validation/CompositeValidator");
 const update_employee_effective_date_command_1 = require("../../update-employee-effective-date.command");
@@ -21,7 +20,7 @@ let UpdateEmployeeEffectiveDateCompositeValidator = class UpdateEmployeeEffectiv
     }
 };
 UpdateEmployeeEffectiveDateCompositeValidator = __decorate([
-    (0, validation_1.CommandValidator)(update_employee_effective_date_command_1.UpdateEmployeeEffectiveDate),
+    validation_1.CommandValidator(update_employee_effective_date_command_1.UpdateEmployeeEffectiveDate),
     __metadata("design:paramtypes", [check_properties_value_validator_1.CheckUpdateEffectiveDatePropertiesValue,
         check_employee_exists_validator_1.CheckEmployeeEffectiveDateExists])
 ], UpdateEmployeeEffectiveDateCompositeValidator);

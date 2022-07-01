@@ -21,7 +21,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersController = void 0;
 const commands_1 = require("../../common/commands");
 const common_1 = require("@nestjs/common");
 const createOrder_1 = require("./commands/createOrder");
@@ -51,23 +50,22 @@ let OrdersController = class OrdersController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, user_decorator_1.Usr)()),
-    __param(1, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, user_decorator_1.Usr()), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "createOrder", null);
 __decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)()),
+    common_1.Get(),
+    __param(0, common_1.Query()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "getOrders", null);
 OrdersController = __decorate([
-    (0, common_1.Controller)('/orders'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    common_1.Controller('/orders'),
+    common_1.UseGuards(passport_1.AuthGuard()),
     __metadata("design:paramtypes", [commands_1.SyncCommandDispatcher,
         orderRepository_1.OrderRepository])
 ], OrdersController);

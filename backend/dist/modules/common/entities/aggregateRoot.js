@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AggregateRoot = void 0;
 const class_transformer_1 = require("class-transformer");
 class AggregateRoot {
     constructor() {
@@ -42,7 +41,7 @@ class AggregateRoot {
     }
 }
 __decorate([
-    (0, class_transformer_1.Exclude)(),
+    class_transformer_1.Exclude(),
     __metadata("design:type", Array)
 ], AggregateRoot.prototype, "raisedEvents", void 0);
 exports.AggregateRoot = AggregateRoot;

@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOrderCompositeValidator = void 0;
 const validation_1 = require("../../../../../common/commands/validation");
 const createOrder_1 = require("../../createOrder");
 const CompositeValidator_1 = require("../../../../../common/commands/validation/CompositeValidator");
@@ -21,7 +20,7 @@ let CreateOrderCompositeValidator = class CreateOrderCompositeValidator extends 
     }
 };
 CreateOrderCompositeValidator = __decorate([
-    (0, validation_1.CommandValidator)(createOrder_1.CreateOrder),
+    validation_1.CommandValidator(createOrder_1.CreateOrder),
     __metadata("design:paramtypes", [checkPropertiesValue_1.CheckPropertiesValue,
         checkProductExist_1.CheckProductExist])
 ], CreateOrderCompositeValidator);

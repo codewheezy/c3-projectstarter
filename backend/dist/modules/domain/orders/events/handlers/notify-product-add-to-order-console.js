@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NotifyProductAddToOrderConsole = void 0;
 const ProductAddedToOrder_1 = require("../ProductAddedToOrder");
 const cqrs_1 = require("@nestjs/cqrs");
 let NotifyProductAddToOrderConsole = class NotifyProductAddToOrderConsole {
@@ -15,7 +14,7 @@ let NotifyProductAddToOrderConsole = class NotifyProductAddToOrderConsole {
     }
 };
 NotifyProductAddToOrderConsole = __decorate([
-    (0, cqrs_1.EventsHandler)(ProductAddedToOrder_1.ProductAddedToOrder)
+    cqrs_1.EventsHandler(ProductAddedToOrder_1.ProductAddedToOrder)
 ], NotifyProductAddToOrderConsole);
 exports.NotifyProductAddToOrderConsole = NotifyProductAddToOrderConsole;
 //# sourceMappingURL=notify-product-add-to-order-console.js.map

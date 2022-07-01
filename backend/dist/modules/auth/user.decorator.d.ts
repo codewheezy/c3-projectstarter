@@ -1,1 +1,1 @@
-export declare const Usr: any;
+export declare const Usr: (...dataOrPipes: any[]) => ParameterDecorator;

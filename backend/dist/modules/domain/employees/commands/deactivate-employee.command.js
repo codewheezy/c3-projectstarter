@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeactivateEmployee = void 0;
 class DeactivateEmployee {
     constructor(employeeId, isActive) {
         this.employeeId = employeeId;

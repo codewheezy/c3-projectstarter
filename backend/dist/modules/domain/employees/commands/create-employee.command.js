@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEmployee = void 0;
 class CreateEmployee {
     constructor(firstName, middleName, lastName, secondLastName, displayName, companyEmail, personalEmail, birthdate, startDate, address, phoneNumber, bankName, accountNumber, gender, tags, country, region, city, salary, effectiveDate, salaryType) {
         this.accountNumber = accountNumber;

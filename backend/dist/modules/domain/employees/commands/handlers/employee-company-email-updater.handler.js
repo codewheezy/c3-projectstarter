@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeCompanyEmailUpdater = void 0;
 const commands_1 = require("../../../../common/commands");
 const update_employee_company_email_command_1 = require("../update-employee-company-email.command");
 const cqrs_1 = require("@nestjs/cqrs");
@@ -39,8 +38,8 @@ let EmployeeCompanyEmailUpdater = class EmployeeCompanyEmailUpdater extends comm
     }
 };
 EmployeeCompanyEmailUpdater = __decorate([
-    (0, cqrs_1.CommandHandler)(update_employee_company_email_command_1.UpdateEmployeeCompanyEmail),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(update_employee_company_email_command_1.UpdateEmployeeCompanyEmail),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [employees_repository_1.EmployeeRepository])
 ], EmployeeCompanyEmailUpdater);
 exports.EmployeeCompanyEmailUpdater = EmployeeCompanyEmailUpdater;

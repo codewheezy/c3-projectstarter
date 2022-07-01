@@ -18,7 +18,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderCreator = void 0;
 const createOrder_1 = require("../createOrder");
 const commands_1 = require("../../../../common/commands");
 const orderRepository_1 = require("../../repositories/orderRepository");
@@ -35,7 +34,7 @@ let OrderCreator = class OrderCreator extends commands_1.BaseCommandHandler {
     }
     handle(command) {
         return __awaiter(this, void 0, void 0, function* () {
-            const order = new order_entity_1.Order({ id: (0, uuid_1.v4)() });
+            const order = new order_entity_1.Order({ id: uuid_1.v4() });
             yield this.orderRepository.save(order);
             const product = yield this.productRepository.findById(command.productId);
             order.addProduct(product);
@@ -44,8 +43,8 @@ let OrderCreator = class OrderCreator extends commands_1.BaseCommandHandler {
     }
 };
 OrderCreator = __decorate([
-    (0, cqrs_1.CommandHandler)(createOrder_1.CreateOrder),
-    (0, common_1.Injectable)(),
+    cqrs_1.CommandHandler(createOrder_1.CreateOrder),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [orderRepository_1.OrderRepository,
         productRepository_1.ProductRepository])
 ], OrderCreator);

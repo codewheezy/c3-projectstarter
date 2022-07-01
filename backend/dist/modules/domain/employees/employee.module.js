@@ -8,9 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmployeeModule = void 0;
 const common_1 = require("@nestjs/common");
 const handlers_1 = require("./commands/handlers");
 const handlers_2 = require("./events/handlers");
@@ -36,7 +34,7 @@ let EmployeeModule = class EmployeeModule {
     }
 };
 EmployeeModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         imports: [common_2.CommonModule, typeorm_1.TypeOrmModule.forFeature([employee_entity_1.Employee]), auth_module_1.AuthModule, passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
         controllers: [employee_controller_1.EmployeeController],
         providers: [
@@ -47,7 +45,8 @@ EmployeeModule = __decorate([
             app_logger_1.AppLogger,
         ],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof core_1.ModuleRef !== "undefined" && core_1.ModuleRef) === "function" ? _a : Object, common_3.SyncCommandDispatcher])
+    __metadata("design:paramtypes", [core_1.ModuleRef,
+        common_3.SyncCommandDispatcher])
 ], EmployeeModule);
 exports.EmployeeModule = EmployeeModule;
 //# sourceMappingURL=employee.module.js.map
