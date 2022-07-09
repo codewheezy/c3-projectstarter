@@ -312,7 +312,7 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
 cleanup:
-    # executor: aws
+    executor: aws
     steps:
       # Checkout code from git
       - run:
@@ -359,18 +359,25 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
-              only: [test-feature-branch]
+              only:
+                - master
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
       - deploy-backend:
-          requires: [run-migrations]
+          requires:
+            - run-migrations
+      - deploy-frontend:
+          requires:
+            - run-migrations
       - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
+          requires:
+            - deploy-backend
+            - deploy-frontend
       - cloudfront-update:
-          requires: [smoke-test]
+          requires:
+            - smoke-test
       - cleanup:
-          requires: [cloudfront-update]
+          requires:
+            - cloudfront-update
