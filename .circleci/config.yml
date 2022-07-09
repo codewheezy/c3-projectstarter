@@ -278,7 +278,7 @@ jobs:
   smoke-test:
     executor: python
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Install dependencies
           command: |
@@ -300,7 +300,7 @@ jobs:
   cloudfront-update:
     executor: aws
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Install dependencies
           command: |
@@ -314,7 +314,7 @@ jobs:
 cleanup:
     executor: aws
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Get old stack workflow id
           command: |
