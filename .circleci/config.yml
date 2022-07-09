@@ -17,7 +17,10 @@ commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
-      # Add parameter here   
+      when:
+        type: string
+      id:
+        type: string   
     steps:
       - run:
           name: Destroy environments
@@ -170,8 +173,7 @@ jobs:
           command: npm audit --audit-level=critical
 
   deploy-infrastructure:
-    docker:
-      # Docker image here that supports AWS CLI
+    executor: aws
     steps:
       # Checkout code from git
       - run:
@@ -204,8 +206,7 @@ jobs:
       # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
-    docker:
-      # Docker image here that supports Ansible
+    executor: python
     steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
@@ -223,8 +224,7 @@ jobs:
       # Here's where you will add some code to rollback on failure      
 
   run-migrations:
-    docker:
-      # Docker image here that supports NodeJS
+    executor: node
     steps:
       # Checkout code from git
       - run:
@@ -240,8 +240,7 @@ jobs:
      # Here's where you will add some code to rollback on failure      
 
   deploy-frontend:
-    docker:
-      # Docker image here that supports AWS CLI
+    executor: node
     steps:
       # Checkout code from git
       - run:
@@ -261,8 +260,7 @@ jobs:
       # Here's where you will add some code to rollback on failure      
                     
   deploy-backend:
-    docker:
-      # Docker image here that supports Ansible
+    executor: python
     steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
@@ -278,8 +276,7 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   smoke-test:
-    docker:
-      # Lightweight Docker image 
+    executor: python
     steps:
       # Checkout code from git
       - run:
@@ -301,8 +298,7 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   cloudfront-update:
-    docker:
-      # Docker image here that supports AWS CLI
+    executor: aws
     steps:
       # Checkout code from git
       - run:
@@ -316,8 +312,7 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
 cleanup:
-    docker:
-      # Docker image here
+    executor: aws
     steps:
       # Checkout code from git
       - run:
