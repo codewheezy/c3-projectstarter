@@ -183,10 +183,9 @@ jobs:
       # Here's where you will add some code to rollback on failure      
 
   run-migrations:
-    docker:
-      # Docker image here that supports NodeJS
+    executor: node
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Run migrations
           command: |
@@ -236,10 +235,9 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   smoke-test:
-    docker:
-      # Lightweight Docker image 
+    executor: python 
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Install dependencies
           command: |
@@ -259,10 +257,9 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   cloudfront-update:
-    docker:
-      # Docker image here that supports AWS CLI
+    executor: aws
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Install dependencies
           command: |
@@ -274,10 +271,9 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
 cleanup:
-    docker:
-      # Docker image here
+    executor: aws
     steps:
-      # Checkout code from git
+      - checkout
       - run:
           name: Get old stack workflow id
           command: |
