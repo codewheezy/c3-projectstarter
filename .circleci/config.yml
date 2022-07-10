@@ -1,26 +1,15 @@
 version: 2.1
 
-
 executors:
   node:
     docker:
       - image: circleci/node:13.8.0
-  python:
-    docker:
-      - image: python:3.9.0-alpine
-  aws:
-    docker:
-      - image: amazon/aws-cli
-
 
 commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
-      when:
-        type: string
-      id:
-        type: string   
+      # Add parameter here   
     steps:
       - run:
           name: Destroy environments
@@ -28,14 +17,10 @@ commands:
           command: |
             # Your code here
             exit 1
-
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
-      when:
-        type: string
-      id:
-        type: string    
+      # Add parameter here     
     steps:
       - run:
           name: Revert migrations
@@ -52,128 +37,75 @@ commands:
             fi
             
 jobs:
-
-  install-backend-dependencies:
-    executor: node
-    steps:
-      - checkout
-      - run:
-          name: npm install
-          working_directory: ./backend
-          command: ls -la && npm install
-      - persist_to_workspace:
-          root: .
-          paths:
-            - backend/node_modules
-
-
-  install-frontend-dependencies:
-    executor: node
-    steps:
-      - checkout
-      - run:
-          name: npm install
-          working_directory: ./frontend
-          command: ls -la && npm install
-      - persist_to_workspace:
-          root: .
-          paths:
-            - frontend/node_modules
-
   build-frontend:
     executor: node
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - restore_cache:
+          keys: [frontend-build]
       - run:
-          name: npm run build
-          working_directory: ./frontend
-          command: npm run build
+          name: Build front-end
+          command: |
+            cd frontend
+            npm install
+            npm run build
+            exit 1
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
 
   build-backend:
     executor: node
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - restore_cache:
+          keys: [backend-build]
       - run:
-          name: npm run build
-          working_directory: ./backend
-          command: npm run build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - backend/dist
+          name: Back-end build
+          command: |
+             cd backend
+             npm install
+             npm run build
+             exit 1
+      - save_cache:
+          paths: [backend/node_modules]
+          key: backend-build
 
   test-frontend:
-    executor: node
+    docker:
+      # Docker image here
     steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Install junit coverage reporter
-          working_directory: ./frontend
-          command: npm install --save-dev jest-junit
-      - run:
-          name: Run tests with JUnit as reporter
-          working_directory: ./frontend
-          command: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit && pwd && ls -la /tmp
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./test_results
-      - store_test_results:
-          path: ./frontend/test_results
-      - store_artifacts:
-          path: ./frontend/test_results
-
-
+      # Checkout code from git
+      # Restore from cache
+      # Your job code here
+                
   test-backend:
-    executor: node
+    docker:
+      # Docker image here
     steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Install junit coverage reporter
-          working_directory: ./backend
-          command: npm install --save-dev jest-junit
-      - run:
-          name: Run tests with JUnit as reporter
-          working_directory: ./backend
-          command: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit && pwd
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./test_results
-      - store_test_results:
-          path: ./backend/test_results
-      - store_artifacts:
-          path: ./backend/test_results
+      # Checkout code from git
+      # Restore from cache
+      # Your job code here
             
   scan-frontend:
-    executor: node
+    docker:
+      # Docker image here
     steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Check Frontend against security vulnerabilities
-          working_directory: ./frontend
-          command: npm audit --audit-level=critical
-
+      # Checkout code from git
+      # Restore from cache
+      # Your job code here
 
   scan-backend:
-    executor: node
+    docker:
+      # Docker image here
     steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Check Backend against security vulnerabilities
-          working_directory: ./backend
-          command: npm audit --audit-level=critical
+      # Checkout code from git
+      # Restore from cache
+      # Your job code here
 
   deploy-infrastructure:
-    executor: aws
+    docker:
+      # Docker image here that supports AWS CLI
     steps:
       # Checkout code from git
       - run:
@@ -206,7 +138,8 @@ jobs:
       # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
-    executor: python
+    docker:
+      # Docker image here that supports Ansible
     steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
@@ -224,7 +157,8 @@ jobs:
       # Here's where you will add some code to rollback on failure      
 
   run-migrations:
-    executor: node
+    docker:
+      # Docker image here that supports NodeJS
     steps:
       # Checkout code from git
       - run:
@@ -240,7 +174,8 @@ jobs:
      # Here's where you will add some code to rollback on failure      
 
   deploy-frontend:
-    executor: node
+    docker:
+      # Docker image here that supports AWS CLI
     steps:
       # Checkout code from git
       - run:
@@ -260,7 +195,8 @@ jobs:
       # Here's where you will add some code to rollback on failure      
                     
   deploy-backend:
-    executor: python
+    docker:
+      # Docker image here that supports Ansible
     steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
@@ -276,9 +212,10 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   smoke-test:
-    executor: python
+    docker:
+      # Lightweight Docker image 
     steps:
-      - checkout
+      # Checkout code from git
       - run:
           name: Install dependencies
           command: |
@@ -298,9 +235,10 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
   cloudfront-update:
-    executor: aws
+    docker:
+      # Docker image here that supports AWS CLI
     steps:
-      - checkout
+      # Checkout code from git
       - run:
           name: Install dependencies
           command: |
@@ -312,9 +250,10 @@ jobs:
       # Here's where you will add some code to rollback on failure  
 
 cleanup:
-    executor: aws
+    docker:
+      # Docker image here
     steps:
-      - checkout
+      # Checkout code from git
       - run:
           name: Get old stack workflow id
           command: |
@@ -329,55 +268,35 @@ cleanup:
               # your code here
             fi
             
-
 workflows:
   default:
     jobs:
-      ## BUILD AND DEPLOY
-      - install-backend-dependencies
-      - install-frontend-dependencies
-
-      - build-backend:
-          requires:
-            - install-backend-dependencies
-      - build-frontend:
-          requires:
-            - install-frontend-dependencies
-      - test-backend:
-          requires:
-            - build-backend
+      - build-frontend
+      - build-backend
       - test-frontend:
-          requires:
-            - build-frontend
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
       - scan-backend:
-          requires:
-            - build-backend
+          requires: [build-backend]
       - scan-frontend:
-          requires:
-            - build-frontend
+          requires: [build-frontend]
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
-              only:
-                - master
+              only: [test-feature-branch]
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      - deploy-backend:
-          requires:
-            - run-migrations
       - deploy-frontend:
-          requires:
-            - run-migrations
+          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
       - smoke-test:
-          requires:
-            - deploy-backend
-            - deploy-frontend
+          requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
-          requires:
-            - smoke-test
+          requires: [smoke-test]
       - cleanup:
-          requires:
-            - cloudfront-update
+          requires: [cloudfront-update]

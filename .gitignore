@@ -1,3 +1,10 @@
+.DS_Store
+
+temp/**
+**/presentation/**
+
+.history
+
 *~
 *.sw[mnpcod]
 *.log
@@ -28,7 +35,6 @@ $RECYCLE.BIN/
 postgres_dev/
 logfile
 
-.DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
 node_modules
@@ -61,10 +67,10 @@ plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/
 
-.DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
 node_modules
 
 .env
 dist
+Footer
