@@ -121,15 +121,23 @@ jobs:
     executor: node
     steps:
       - checkout
-      # Restore from cache
-      # Your job code here
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check Frontend against security vulnerabilities
+          working_directory: ./frontend
+          command: npm audit --audit-level=critical
 
   scan-backend:
     executor: node
     steps:
       - checkout
-      # Restore from cache
-      # Your job code here
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check Backend against security vulnerabilities
+          working_directory: ./backend
+          command: npm audit --audit-level=critical
 
   deploy-infrastructure:
     executor: aws
@@ -302,9 +310,11 @@ workflows:
           requires:
             - install-frontend-dependencies
       - scan-backend:
-          requires: [build-backend]
+          requires:
+            - build-backend
       - scan-frontend:
-          requires: [build-frontend]
+          requires:
+            - build-frontend
       # - deploy-infrastructure:
       #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       #     filters:
