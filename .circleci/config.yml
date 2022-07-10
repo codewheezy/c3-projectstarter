@@ -291,8 +291,10 @@ cleanup:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
+      ## BUILD AND DEPLOY
+      - install-backend-dependencies
+      - install-frontend-dependencies
+      
       - build-backend:
           requires:
             - install-backend-dependencies
