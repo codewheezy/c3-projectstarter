@@ -179,7 +179,7 @@ jobs:
           working_directory: ./.circleci/files
           command: |
             aws cloudformation deploy \
-              --template-file backend.yaml \
+              --template-file backend.yml \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
@@ -188,7 +188,7 @@ jobs:
           working_directory: ./.circleci/files
           command: |
             aws cloudformation deploy \
-              --template-file frontend.yaml \
+              --template-file frontend.yml \
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
@@ -360,6 +360,11 @@ workflows:
           requires:
             - build-frontend
       - deploy-infrastructure:
+          requires:
+            - test-backend
+            - test-frontend
+            - scan-backend
+            - scan-frontend
           filters:
             branches:
               only:
