@@ -387,6 +387,12 @@ workflows:
       - scan-frontend:
           requires:
             - build-frontend
+      - test-backend:
+          requires:
+            - build-backend
+      - test-frontend:
+          requires:
+            -  build-frontend
 
       ## INFRASTRUCTURE
       - deploy-infrastructure:
@@ -399,8 +405,8 @@ workflows:
             - deploy-infrastructure
       - run-migrations:
           requires:
-            # - test-backend
-            # - test-frontend
+            - test-backend
+            - test-frontend
             - scan-backend
             - scan-frontend
             - configure-infrastructure
