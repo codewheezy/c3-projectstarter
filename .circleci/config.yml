@@ -400,7 +400,7 @@ workflows:
       - run-migrations:
           requires:
             # - test-backend
-            - test-frontend
+            # - test-frontend
             - scan-backend
             - scan-frontend
             - configure-infrastructure
