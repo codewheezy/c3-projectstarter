@@ -274,21 +274,38 @@ jobs:
     executor: node
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
-          name: Install dependencies
+          name: Install AWS CLI dependencies
+          working_directory: /tmp
           command: |
-            # your code here
+            sudo apt-get update && sudo apt-get install -yy less
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
       - run:
-          name: Get backend url
+          name: Rebuild frontend with backend API Url
+          working_directory: ./frontend
           command: |
-            # your code here
-            export API_URL="http://${BACKEND_IP}:3030"
+            export API_URL=$(curl -H "token: 1e288415-cfc8-4a0a-a23c-087eb7cd7678" --request GET https://api.memstash.io/values/BACKEND_URL)
             echo "${API_URL}"
+            npm run build
       - run:
-          name: Deploy frontend objects
+          name: Deploy frontend objects to S3
+          working_directory: ./frontend
           command: |
-            # your code here
-      # Here's where you will add some code to rollback on failure      
+            aws s3 cp ./dist "s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}" --recursive
+      - persist_to_workspace:
+          root: .
+          paths:
+            - frontend/dist
+      - destroy_environment:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail
+      - revert_migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail     
                     
   deploy-backend:
     executor: python
@@ -406,8 +423,9 @@ workflows:
             branches:
               only:
                 - master
-      # - deploy-frontend:
-      #     requires: [run-migrations]
+      - deploy-frontend:
+          requires:
+            - run-migrations
       # - deploy-backend:
       #     requires: [run-migrations]
       # - smoke-test:
