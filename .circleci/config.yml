@@ -190,7 +190,7 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --output text)
-            curl -H "Content-Type: text/plain" -H "token: 1e288415-cfc8-4a0a-a23c-087eb7cd7678" --request PUT --data "http://$BACKEND_IP:3030" https://api.memstash.io/values/BACKEND_URL
+            curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
       - run:
           name: Deploy frontend infrastructure
           working_directory: ./.circleci/files
