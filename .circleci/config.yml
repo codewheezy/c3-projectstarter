@@ -471,10 +471,10 @@ workflows:
             - test-frontend
             - scan-backend
             - scan-frontend
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
+          filters:
+            branches:
+              only:
+                - master
       - deploy-backend:
           requires:
             - run-migrations
