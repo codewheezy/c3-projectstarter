@@ -12,20 +12,30 @@ executors:
       - image: amazon/aws-cli
 
 commands:
-  destroy-environment:
-    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+  destroy_environment:
+    description: Destroy Cloud Formation Stacks and infrastructure
     parameters:
       when:
         type: string
       id:
-        type: string  
+        type: string
     steps:
       - run:
-          name: Destroy environments
-          when: on_fail
+          name: Destroy udapeople backend cfn stack
           command: |
-            # Your code here
-            exit 1
+            aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.id >>
+          environment:
+            TERM: xterm-256color
+          when: << parameters.when >>
+      - run:
+          name: Destroy udapeople frontend cfn stack and S3 bucket
+          command: |
+            aws s3 rm s3://udapeople-<< parameters.id >> --recursive
+            aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.id >>
+          environment:
+              TERM: xterm-256color
+          when: << parameters.when >>
+          
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
@@ -38,7 +48,7 @@ commands:
           name: Revert migrations
           working_directory: ./backend
           command: |
-            SUCCESS=$(curl -H "token: 2a9e15d6-b9fa-4b1f-a5dc-e3b9643a9b63" --request GET https://api.memstash.io/values/DB_MIGRATION_<< parameters.id >>)
+            SUCCESS=$(curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_<< parameters.id >>)
             echo $SUCCESS
             if [[ "$SUCCESS" == "success" ]]
             then
@@ -248,27 +258,30 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      # - run:
-      #     name: Install AWS CLI dependencies
-      #     working_directory: /tmp
-      #     command: |
-      #       sudo apt-get update && sudo apt-get install -yy less
-      #       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      #       unzip awscliv2.zip
-      #       sudo ./aws/install
+      - run:
+          name: Install AWS CLI dependencies
+          working_directory: /tmp
+          command: |
+            sudo apt-get update && sudo apt-get install -yy less
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
       - run:
           name: Run migrations
           working_directory: ./backend
           command: |
-            npm run migrations > migrations_dump.txt
+            npm run migrations > migration_status
       - run:
-          name: Send migration results to memstash
+          name: Send migration results to kvdb
           working_directory: ./backend
           command: |
-            if grep -q "has been executed successfully" migrations_dump.txt
+            if grep -q "has been executed successfully" migration_status
             then
-              echo "DB migration was successful, will update memstash..."
-              curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              echo "DB migration was successful, will update kvdb..."
+              curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+            else
+              echo "DB migration failed, please verify setup! Probably the database already exists. Verify setup!"
+              curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
             echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
       - destroy-environment:
