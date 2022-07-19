@@ -194,7 +194,7 @@ jobs:
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
       - run:
-          name: Save backend URL in memstash
+          name: Save backend URL in kvdb
           command: |
             BACKEND_IP=$(aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
@@ -477,14 +477,6 @@ workflows:
       - run-migrations:
           requires:
             - configure-infrastructure
-            - test-backend
-            - test-frontend
-            - scan-backend
-            - scan-frontend
-          filters:
-            branches:
-              only:
-                - master
       - deploy-backend:
           requires:
             - run-migrations
