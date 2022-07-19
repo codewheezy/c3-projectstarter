@@ -200,7 +200,7 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --output text)
-            curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+            curl https://kvdb.io/8kZzXBbY9FGmt8w53BAmnU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
       - run:
           name: Deploy frontend infrastructure
           working_directory: ./.circleci/files
@@ -477,6 +477,14 @@ workflows:
       - run-migrations:
           requires:
             - configure-infrastructure
+            - test-backend
+            - test-frontend
+            - scan-backend
+            - scan-frontend
+          filters:
+            branches:
+              only:
+                - master
       - deploy-backend:
           requires:
             - run-migrations
