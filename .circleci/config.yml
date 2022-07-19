@@ -223,7 +223,7 @@ jobs:
           root: .
           paths:
             - .circleci/ansible/inventory
-      - destroy-environment:
+      - destroy_environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
           when: on_fail    
 
@@ -284,7 +284,7 @@ jobs:
               curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
             echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
-      - destroy_environment:
+      - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
           when: on_fail    
 
