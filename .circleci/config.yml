@@ -479,8 +479,8 @@ workflows:
             - configure-infrastructure
             - test-backend
             - test-frontend
-            - scan-backend
-            - scan-frontend
+            # - scan-backend
+            # - scan-frontend
           filters:
             branches:
               only:
