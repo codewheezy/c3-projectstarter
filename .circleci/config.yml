@@ -278,10 +278,10 @@ jobs:
             if grep -q "has been executed successfully" migrations_dump.txt
             then
               echo "DB migration was successful, will update kvdb..."
-              curl https://kvdb.io/WTbNzFagurt8Lqqsi34LMH/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             else
               echo "DB migration failed, please verify setup! Probably the database already exists. Verify setup!"
-              curl https://kvdb.io/WTbNzFagurt8Lqqsi34LMH/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
             echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
       - destroy_environment:
