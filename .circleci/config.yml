@@ -489,12 +489,12 @@ workflows:
             branches:
               only:
                 - master
-      # - deploy-backend:
-      #     requires:
-      #       - run-migrations
-      # - deploy-frontend:
-      #     requires:
-      #       - run-migrations
+      - deploy-backend:
+          requires:
+            - run-migrations
+      - deploy-frontend:
+          requires:
+            - run-migrations
       # - smoke-test:
       #     requires:
       #       - deploy-backend
