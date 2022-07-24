@@ -382,7 +382,7 @@ jobs:
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople" --output text)
             export BACKEND_URL="http://${BACKEND_IP}:3030"
-            curl "$BACKEND_URL/api/status"
+            curl -k ${BACKEND_URL}/api/status
       - run:
           name: Frontend smoke test.
           working_directory: ./backend
