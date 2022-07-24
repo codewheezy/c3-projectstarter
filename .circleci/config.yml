@@ -310,8 +310,11 @@ jobs:
           name: Rebuild frontend with backend API Url
           working_directory: ./frontend
           command: |
-            export API_URL=$(curl https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1')
-            echo "${API_URL}"
+            export BACKEND_IP=$(aws ec2 describe-instances...............)
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "API_URL = ${API_URL}"
+            echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
+            cat frontend/.env
             npm run build
       - run:
           name: Deploy frontend objects to S3
