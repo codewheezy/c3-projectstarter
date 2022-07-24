@@ -274,12 +274,12 @@ jobs:
           name: Run migrations
           working_directory: ./backend
           command: |
-            npm run migrations > migration_status
+            npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb
           working_directory: ./backend
           command: |
-            if grep -q "has been executed successfully" migration_status
+            if grep -q "has been executed successfully" migrations_dump.txt
             then
               echo "DB migration was successful, will update kvdb..."
               curl -k https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
@@ -306,23 +306,22 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
-      - run:
+        - run:
           name: Rebuild frontend with backend API Url
-          working_directory: ./frontend
+          # working_directory: ./frontend
           command: |
-            export BACKEND_IP=$(aws ec2 describe-instances \ 
-            --query 'Reservations[*].Instances[*].PublicIpAddress' \ 
-            --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \ 
-            --output text)
+            export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople" --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "API_URL = ${API_URL}"
             echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
             cat frontend/.env
-            npm run build
       - run:
           name: Deploy frontend objects to S3
           working_directory: ./frontend
           command: |
+            npm install
+            npm run build
+            tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp ./dist "s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}" --recursive
       - persist_to_workspace:
           root: .
