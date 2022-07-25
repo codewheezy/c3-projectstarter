@@ -310,7 +310,7 @@ jobs:
           name: Rebuild frontend with backend API Url
           # working_directory: ./frontend
           command: |
-            export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople" --output text)
+            export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "API_URL = ${API_URL}"
             echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
@@ -380,9 +380,22 @@ jobs:
           name: Backend smoke test.
           working_directory: ./backend
           command: |
-            export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople" --output text)
+            export BACKEND_IP=$(aws ec2 describe-instances \ 
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \ 
+            --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \ 
+            --output text)
             export BACKEND_URL="http://${BACKEND_IP}:3030"
-            curl -s ${BACKEND_URL}/api/status
+            echo ${BACKEND_IP}
+            echo ${BACKEND_URL}
+            echo udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+            sudo pm2 log
+            if curl -s $BACKEND_URL/api/status | grep "ok"
+            then 
+              exit 0
+            else 
+              exit 1
+            fi
+            - run:
       - run:
           name: Frontend smoke test.
           working_directory: ./backend
