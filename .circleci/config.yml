@@ -282,10 +282,10 @@ jobs:
             if grep -q "has been executed successfully" migrations_dump.txt
             then
               echo "DB migration was successful, will update kvdb..."
-              curl -k https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl -k https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             else
               echo "DB migration failed, please verify setup! Probably the database already exists. Verify setup!"
-              curl -k https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl -k https://kvdb.io/97FvJmkzeVY4bsi7sV4AjU/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
             echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
       - destroy_environment:
@@ -376,23 +376,19 @@ jobs:
           command: |
             apk add --update curl nodejs npm
             pip install awscli
-      # - run:
-      #     name: Backend smoke test.
-      #     working_directory: ./backend
-      #     command: |
-      #       npm i pm2
-      #       export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
-      #       export BACKEND_URL="http://${BACKEND_IP}:3030"
-      #       echo ${BACKEND_IP}
-      #       echo ${BACKEND_URL}
-      #       echo udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
-      #       sudo pm2 log
-      #       if curl -s $BACKEND_URL/api/status | grep "ok"
-      #       then 
-      #         exit 0
-      #       else 
-      #         exit 1
-      #       fi
+      - run:
+          name: Backend smoke test.
+          working_directory: ./backend
+          command: |
+            export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+            if curl -s "${API_URL}/api/status" | grep "ok"
+            then
+              return 0
+            else
+              return 1
+            fi
       - run:
           name: Frontend smoke test.
           working_directory: ./backend
@@ -430,7 +426,7 @@ jobs:
           working_directory: ./.circleci/files
           command: |
             aws cloudformation deploy \
-              --template-file cloudfront.yaml \
+              --template-file cloudfront.yml \
               --stack-name udapeople-cloudfront-production \
               --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople
