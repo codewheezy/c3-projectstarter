@@ -400,8 +400,6 @@ jobs:
             curl -s ${URL} | grep -q "Welcome"
             then
               return 1
-            else
-              return 1
             fi
       - destroy_environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
