@@ -298,6 +298,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+      - add_ssh_keys:
+          fingerprints: ["5f:fa:5f:cf:eb:ea:94:0d:4a:06:a4:cd:9f:1e:43:26"]
       - run:
           name: Install AWS CLI dependencies
           working_directory: /tmp
@@ -393,7 +395,6 @@ jobs:
             else 
               exit 1
             fi
-            - run:
       - run:
           name: Frontend smoke test.
           working_directory: ./backend
