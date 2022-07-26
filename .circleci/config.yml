@@ -579,7 +579,7 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm run test
+            npm run build
             exit 1
       - save_cache:
           paths: [frontend/node_modules]
@@ -595,9 +595,9 @@ jobs:
       - run:
           name: Back-end build
           command: |
-             cd frontend
+             cd backend
              npm install
-             npm run test
+             npm run build
              exit 1
       - save_cache:
           paths: [backend/node_modules]
