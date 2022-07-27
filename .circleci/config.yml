@@ -552,6 +552,8 @@ commands:
     parameters:
       workflow_id:
         type: string 
+      # when:
+      #   type: string
     steps:
       - run:
           name: Revert migrations
@@ -565,7 +567,6 @@ commands:
               npm install
               npm run migration:revert
             fi
-            when: << parameters.when >>
 jobs:
   build-frontend:
     docker:
