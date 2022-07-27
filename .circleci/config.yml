@@ -550,7 +550,9 @@ commands:
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
-      workflow_id:
+      when:
+        type: string
+      id:
         type: string   
     steps:
       - run:
@@ -793,9 +795,11 @@ jobs:
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       - destroy-environment:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail
       - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}    
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail    
                     
   deploy-backend:
     docker:
@@ -833,9 +837,11 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail 
       - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}  
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail  
 
 #   smoke-test:
 #     docker:
