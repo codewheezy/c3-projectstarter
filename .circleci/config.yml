@@ -567,7 +567,7 @@ commands:
               npm install
               npm run migration:revert
             fi
-            
+            when: << parameters.when >>
 jobs:
   build-frontend:
     docker:
