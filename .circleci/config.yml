@@ -712,13 +712,15 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install -y tar gzip
             apk add --update ansible
             ansible --version
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible
+            pwd &&
+            ls -la
+            cat inventory
             ansible-playbook -i inventory.txt configure-server.yml
             exit 1
       - destroy-environment:
