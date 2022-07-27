@@ -657,7 +657,8 @@ jobs:
             npm audit fix --audit-level=critical
 
   deploy-infrastructure:
-    - image: amazon/aws-cli
+    docker:
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
@@ -699,7 +700,8 @@ jobs:
           when: on_fail    
 
   configure-infrastructure:
-    - image: amazon/aws-cli
+    docker:
+      - image: python:3.9.0-alpine
     steps:
       - checkout
       - run:
