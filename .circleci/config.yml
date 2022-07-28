@@ -300,7 +300,7 @@ jobs:
             sudo ./aws/install
       - run:
           name: Rebuild frontend with backend API Url
-          working_directory: ./frontend
+          # working_directory: ./frontend
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:project,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
             export API_URL="http://${BACKEND_IP}:3030"
